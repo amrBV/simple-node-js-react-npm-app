@@ -17,13 +17,12 @@ environment {
                 sh 'npm install'
             }
         }
-        stage('Building image') {
-            steps {
-                script {
-                  docker.build registry + ":$BUILD_NUMBER"
-              }
-            }
-        }
+    stage('Artifacts') {
+      steps {
+        sh 'tar -czf dist.tar.gz ./dist'
+        archiveArtifacts artifacts: 'dist.tar.gz', fingerprint: true
+      }
+    }
         stage('Test') {
             steps {
                 sh './jenkins/scripts/test.sh'
