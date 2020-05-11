@@ -6,6 +6,8 @@ pipeline {
         }
     }
 environment {
+        registry = "docker_hub_account/repository_name"
+        registryCredential = 'docker'
         HOME= '.'
         CI = 'true'
 }
@@ -13,6 +15,13 @@ environment {
         stage('Build') {
             steps {
                 sh 'npm install'
+            }
+        }
+        stage('Building image') {
+            steps {
+                script {
+                  docker.build registry + ":$BUILD_NUMBER"
+              }
             }
         }
         stage('Test') {
