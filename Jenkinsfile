@@ -6,7 +6,8 @@ pipeline {
         }
     }
 environment {
-        HOME= '.'
+        HOME= '.',
+        CI = 'true'
 }
     stages {
         stage('Build') { 
