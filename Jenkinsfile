@@ -6,7 +6,7 @@ pipeline {
         }
     }
 environment {
-        registry = "docker_hub_account/repository_name"
+        registry = "amrbv/vuejs"
         registryCredential = 'docker'
         HOME= '.'
         CI = 'true'
